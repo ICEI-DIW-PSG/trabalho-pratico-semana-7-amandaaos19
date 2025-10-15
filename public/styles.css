@@ -14,6 +14,10 @@ footer{
     font-size: medium;
     border-radius: 10px 
 }
+script{
+    background-color: rgba(204, 195, 187, 0.741); 
+    padding: 10px;;
+}
 @media screen and (max-width:900px){
     header,footer, nav{
         background-color: rgb(113, 78, 47);

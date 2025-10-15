@@ -1,12 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
-</head>
-<body>
-    <script src="app.js"></script>
+  <meta charset="UTF-8">
+  <title>Detalhes do Livro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head> 
+
+<body CarregarCards() class="corpo" style="font-family:Times New Roman, Times, serif;">
+<nav class="fixed-top"style="background-color: rgb(204, 195, 187);color: rgb(113, 78, 47); padding: 10px; display: flex;">
+    <strong class="titulo" style="font-size: large;">Gêneros</strong>
+    <ul class="menu" style="list-style: none; display: flex; gap: 20px; text-align: right;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Fantasia</a></li>
+        <li><a href="#">Infantil</a></li>
+        <li><a href="#">Romance</a></li>
+        <li><a href="#">Suspense</a></li>
+        <li><a href="#">Terror</a></li>
+    </ul>
+</nav>
+<header class="text-center"style="background-color: rgb(204, 195, 187);color: rgb(113, 78, 47); margin-top: 5%; font-family:Times New Roman; .fs-3">
+    <h1>
+        Ponto Literário
+    </h1>
+    <div class="subtitulo" style="margin: 0.5%;">
+        Seu Ponto de Leitura
+    </div>
+</header>
+    <main class="text-center"style="background-color: rgb(204, 195, 187);">
+        O <strong style="color: rgb(113, 78, 47)">Ponto Literário</strong> é um site desenvolvido para os amantes da leitura que se encontram 
+        perdidos e em busca de uma nova paixão para brilhar seus olhos!
+    </main>
+
+  <div class="container text-center mt-5">
+    <div id="detalhesLivro" class="mt-4"></div>
+    <button class="btn btn-dark mt-3" style="background-color: rgb(113, 78, 47); color: rgb(204, 195, 187);"
+    onclick="window.location.href='index.html'">Voltar</button>
+  </div>
+
+    <script>
+        const livros = [
+      { id: 1, titulo: "Harry Potter e a Pedra Filosofal", autor: "J.K. Rowling", img: "HarryPotter.jpg", sinopse: "'Harry Potter' conta a história do jovem Harry que aos 11 anos descobre ser um bruxo e é convidado para a escola de magia e bruxaria de Hogwarts, onde encontra amigos como Rony e Hermione e aprende sobre seu passado, o assassinato de seus pais pelo temível Lord Voldemort e sua conexão com ele. Ele e seus amigos descobrem um plano para roubar a Pedra Filosofal e tentam impedi-lo da imortalidade e seu retorno ao poder." },
+      { id: 2, titulo: "Menina Bonita do Laço de Fita", autor: "Ana Maria Machado", img: "meninabonita.jpg", sinopse: "'Menina Bonita do Laço de Fita' narra a aventura de um coelho branco que, apaixonado pela menina negra de pele escura e cabelos enrolados, busca o segredo para ser preto. A menina inventa histórias como cair em tinta preta ou comer jabuticabas, mas o coelho não consegue imitar a cor dela. A mãe da menina revela que o segredo é a beleza de sua avó preta. O coelho, então, casa-se com uma coelha preta e tem filhos de várias cores, incluindo uma coelha pretinha, afilhada da menina, que se torna um símbolo de aceitação da diversidade e da beleza da negritude." },
+      { id: 3, titulo: "Simplesmente Acontece", autor: "Cecelia Ahern", img: "simplesmenteacontece.jpg", sinopse: "'Simplesmente Acontece' conta a história de Rosie e Alex, que são amigos inseparáveis desde a infância, mas são separados quando Alex se muda para os Estados Unidos, e os anos subsequentes são marcados por uma série de desencontros e circunstâncias que os mantêm longe, apesar do amor que sentem um pelo outro." },
+      { id: 4, titulo: "Escuridão Total Sem Estrelas", autor: "Stephen King", img: "escuridaototal.jpg", sinopse: "'Escuridão Total Sem Estrelas' é uma coleção de quatro contos de Stephen King, onde os personagens enfrentam situações extremas de escuridão moral, sem auxílio de bom senso, piedade ou justiça. Cada história explora o lado sombrio da natureza humana e as escolhas difíceis que as pessoas fazem em momentos de crise." },
+      { id: 5, titulo: "Dias Perfeitos", autor: "Raphael Montes", img: "diasperfeitos.jpg", sinopse: "'Dias Perfeitos' de Raphael Montes conta a história de Téo, um estudante de medicina obcecado por Clarice, uma aspirante a roteirista. Após ela rejeitar suas investidas, Téo a sequestra para uma viagem pelo Rio de Janeiro, acreditando que, longe de tudo, ela acabará por amá-lo. O romance é um thriller sombrio e claustrofóbico narrado sob a perspectiva do sequestrador, que utiliza seus conhecimentos de medicina para manter Clarice sedada e ao seu lado." },
+      { id: 6, titulo: "Verity", autor: "Colleen Hoover", img: "Verity.jpg", sinopse: "'Verity' acompanha Lowen Ashleigh, uma escritora em dificuldades, que recebe a oferta de terminar a série de livros de sucesso da autora Verity Crawford, que está em coma após um acidente. Para isso, Lowen precisa morar na casa de Verity, analisar seus manuscritos e encontra um diário chocante que revela segredos perturbadores sobre a vida da autora. A história se complica quando Lowen se envolve com o marido de Verity, e a verdade por trás do diário e a segurança de Lowen se tornam incertas." }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"));
+    const livro = livros.find(l => l.id === id);
+
+    if (livro) {
+        document.body.style.padding = "25px";
+        document.getElementById("detalhesLivro").style.backgroundColor = "rgba(204, 195, 187, 0.741)";
+        document.getElementById("detalhesLivro").innerHTML = `
+        <img src="${livro.img}" alt="${livro.titulo}" width="200" class="rounded mb-3">
+        <h2>${livro.titulo}</h2>
+        <p><strong>Autor:</strong> ${livro.autor}</p>
+        <p style="text-align: justify; margin: 20px;">${livro.sinopse}</p>
+      `;
+    } else {
+      document.getElementById("detalhesLivro").innerHTML = "<p>Livro não encontrado!</p>";
+    }
+    </script>
+  <footer class="rodape" style="background-color: rgb(204, 195, 187); color: rgb(113, 78, 47)">
+        @pontoliterario | (31)8002-8922 | ponto.literario@mail.com
+    </footer>
 </body>
 </html>
